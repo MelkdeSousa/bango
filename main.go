@@ -7,6 +7,12 @@ type CheckingAccount struct {
 	balance       int
 }
 
+func (c *CheckingAccount) Withdraw(amount int) {
+	if c.balance >= amount {
+		c.balance -= amount
+	}
+}
+
 func main() {
 
 }
