@@ -3,7 +3,7 @@ package domain
 import "errors"
 
 type Account struct {
-	Owner         string
+	Owner         Owner
 	AccountNumber int
 	AgencyNumber  int
 	Balance       int
