@@ -8,7 +8,7 @@ type CheckingAccount struct {
 }
 
 func (c *CheckingAccount) Withdraw(amount int) {
-	if c.balance >= amount {
+	if amount >= 0 && c.balance >= amount {
 		c.balance -= amount
 	}
 }
