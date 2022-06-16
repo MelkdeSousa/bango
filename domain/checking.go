@@ -3,18 +3,45 @@ package domain
 import "errors"
 
 type Account struct {
-	Owner         Owner
-	AccountNumber int
-	AgencyNumber  int
-	Balance       int
+	owner                       Owner
+	accountNumber, agencyNumber string
+	balance                     int
 }
 
 func (account *Account) GetBalance() int {
-	return account.Balance
+	return account.balance
+}
+
+func (account *Account) GetOwner() Owner {
+	return account.owner
+}
+
+func (account *Account) GetAccountNumber() string {
+	return account.accountNumber
+}
+
+func (account *Account) GetAgencyNumber() string {
+	return account.agencyNumber
+}
+
+func (account *Account) SetOwner(owner Owner) {
+	account.owner = owner
+}
+
+func (account *Account) SetAccountNumber(accountNumber string) {
+	account.accountNumber = accountNumber
+}
+
+func (account *Account) SetAgencyNumber(agencyNumber string) {
+	account.agencyNumber = agencyNumber
+}
+
+func (account *Account) SetBalance(balance int) {
+	account.balance = balance
 }
 
 func (account *Account) Withdraw(amount int) error {
-	if account.Balance < amount {
+	if account.balance < amount {
 		return errors.New("insufficient funds")
 	}
 
@@ -22,7 +49,7 @@ func (account *Account) Withdraw(amount int) error {
 		return errors.New("amount must be positive")
 	}
 
-	account.Balance -= amount
+	account.SetBalance(account.balance - amount)
 
 	return nil
 }
@@ -32,7 +59,7 @@ func (account *Account) Deposit(amount int) error {
 		return errors.New("amount must be positive")
 	}
 
-	account.Balance += amount
+	account.SetBalance(account.balance + amount)
 
 	return nil
 }
